@@ -36,7 +36,7 @@ jobs:
             - uses: Homebrew/actions/setup-homebrew@main
 
             - name: install dependencies
-              run: brew install meson cogapp zlib bzip2 xz cunit
+              run: brew install meson cogapp zlib bzip2 xz cunit libbsd
 
             - name: meson config build dir
               run: meson setup build/
