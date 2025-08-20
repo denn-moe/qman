@@ -39,7 +39,7 @@ jobs:
               run: brew install meson cogapp zlib bzip2 xz cunit
 
             - name: meson config build dir
-              run: meson setup build/ -Dpkg_config_path=/opt/homebrew/opt/ncurses/lib/pkgconfig
+              run: meson setup build/ -Dpkg_config_path=/usr/local/opt/ncurses/lib/pkgconfig
 
             - name: meson compile
               run: meson compile -C build/
