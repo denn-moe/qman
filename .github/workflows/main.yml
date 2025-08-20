@@ -5,7 +5,7 @@ on:
         branches: ["main", "devel-github-action"]
 
 jobs:
-    build:
+    build linux:
         runs-on: ubuntu-latest
 
         steps:
@@ -25,3 +25,11 @@ jobs:
                   draft: true
                   files: |
                     build/src/qman
+
+    build linux:
+        runs-on: macos-15
+        steps:
+            - name: set up homebrew
+              uses: Homebrew/actions/setup-homebrew@main
+            - name: install dependencies
+              run: brew install meson
