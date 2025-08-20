@@ -36,10 +36,10 @@ jobs:
             - uses: Homebrew/actions/setup-homebrew@main
 
             - name: install dependencies
-              run: brew install meson cogapp zlib bzip2 xz cunit libbsd
+              run: brew install meson cogapp zlib bzip2 xz cunit
 
             - name: meson config build dir
-              run: meson setup build/
+              run: meson setup build/ -Dpkg_config_path=/opt/homebrew/opt/ncurses/lib/pkgconfig
 
             - name: meson compile
               run: meson compile -C build/
