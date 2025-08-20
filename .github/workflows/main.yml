@@ -13,6 +13,6 @@ jobs:
             - name: install dependencies
               run : |
                 sudo apt-get update
-                sudo apt-get install -y meson python3-cogapp zlib
+                sudo apt-get install -y meson python3-cogapp zlib1g-dev libbz2-dev
             - name: hello world
               run: echo hello world!
