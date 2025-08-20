@@ -18,5 +18,10 @@ jobs:
               run: meson setup build/
             - name: meson compile
               run: meson compile -C build/
-            - name: hello world
-              run: echo hello world!
+
+            - name: create release draft
+              uses: softprops/action-gh-release@v1
+              with:
+                  draft: true
+                  files: |
+                    build/src/qman
