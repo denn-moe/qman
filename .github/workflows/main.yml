@@ -1,0 +1,14 @@
+name: ubuntu minimal meson build
+
+on:
+    push:
+        branches: ["main", "devel-github-action"]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+            - name: hello world
+              run: echo hello world!
