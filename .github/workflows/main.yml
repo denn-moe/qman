@@ -10,12 +10,15 @@ jobs:
 
         steps:
             - uses: actions/checkout@v4
+
             - name: install dependencies
               run : |
                 sudo apt-get update
                 sudo apt-get install -y meson python3-cogapp zlib1g-dev libbz2-dev liblzma-dev libcunit1-ncurses-dev
+
             - name: meson config build dir
               run: meson setup build/
+
             - name: meson compile
               run: meson compile -C build/
 
@@ -31,9 +34,12 @@ jobs:
         steps:
             - uses: actions/checkout@v4
             - uses: Homebrew/actions/setup-homebrew@main
+
             - name: install dependencies
-              run: brew install meson
+              run: brew install meson cogapp zlib bzip2 xz cunit
+
             - name: meson config build dir
               run: meson setup build/
+
             - name: meson compile
               run: meson compile -C build/
