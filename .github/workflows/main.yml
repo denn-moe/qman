@@ -30,7 +30,7 @@ jobs:
         runs-on: macos-15
         steps:
             - uses: actions/checkout@v4
-              uses: Homebrew/actions/setup-homebrew@main
+            - uses: Homebrew/actions/setup-homebrew@main
             - name: update brew
               run: brew update
             - name: install dependencies
