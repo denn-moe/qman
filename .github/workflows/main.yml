@@ -31,7 +31,9 @@ jobs:
         steps:
             - uses: actions/checkout@v4
             - uses: Homebrew/actions/setup-homebrew@main
-            - name: update brew
-              run: brew update
             - name: install dependencies
               run: brew install meson
+            - name: meson config build dir
+              run: meson setup build/
+            - name: meson compile
+              run: meson compile -C build/
