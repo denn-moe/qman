@@ -1,0 +1,112 @@
+name: test-build
+
+on:
+    push:
+        branches: ["main-github-action", "devel-github-action"]
+
+jobs:
+    linux_arm:
+        runs-on: ubuntu-22.04-arm
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: install dependencies
+              run : |
+                sudo apt-get update
+                sudo apt-get install -y meson pipx libbsd-dev zlib1g-dev libbz2-dev liblzma-dev libcunit1-ncurses-dev
+
+            - name: install cogapp
+              run: pipx install cogapp
+
+            - name: meson config build dir
+              run: meson setup build/ -Dlibbsd=enabled
+
+            - name: meson compile
+              run: meson compile -C build/
+
+            # - name: create release draft
+            #   uses: softprops/action-gh-release@v1
+            #   with:
+            #       draft: true
+            #       files: |
+            #         build/src/qman
+
+    linux_x86_64:
+        runs-on: ubuntu-22.04
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: install dependencies
+              run : |
+                sudo apt-get update
+                sudo apt-get install -y meson pipx libbsd-dev zlib1g-dev libbz2-dev liblzma-dev libcunit1-ncurses-dev
+
+            - name: install cogapp
+              run: pipx install cogapp
+
+            - name: meson config build dir
+              run: meson setup build/ -Dlibbsd=enabled
+
+            - name: meson compile
+              run: meson compile -C build/
+
+            # - name: create release draft
+            #   uses: softprops/action-gh-release@v1
+            #   with:
+            #       draft: true
+            #       files: |
+            #         build/src/qman
+
+    macos_arm:
+        runs-on: macos-13-xlarge
+        steps:
+            - uses: actions/checkout@v4
+            - uses: Homebrew/actions/setup-homebrew@main
+
+            - name: update brew
+              run: brew update
+
+            - name: install dependencies
+              run: brew install meson cogapp cunit ncurses
+
+            - name: meson config build dir
+              run: meson setup build/ -Dpkg_config_path=/opt/homebrew/opt/ncurses/lib/pkgconfig
+
+            - name: meson compile
+              run: meson compile -C build/
+
+            # - name: create release draft
+            #   uses: softprops/action-gh-release@v1
+            #   with:
+            #       draft: true
+            #       files: |
+            #         build/src/qman
+
+    macos_intel:
+        runs-on: macos-13
+        steps:
+            - uses: actions/checkout@v4
+            - uses: Homebrew/actions/setup-homebrew@main
+
+            - name: update brew
+              run: brew update
+
+            - name: install dependencies
+              run: |
+                brew install --overwrite python@3.13
+                brew install meson cogapp cunit ncurses
+
+            - name: meson config build dir
+              run: meson setup build/ -Dpkg_config_path=/usr/local/opt/ncurses/lib/pkgconfig
+
+            - name: meson compile
+              run: meson compile -C build/
+
+            # - name: create release draft
+            #   uses: softprops/action-gh-release@v1
+            #   with:
+            #       draft: true
+            #       files: |
+            #         build/src/qman
