@@ -29,7 +29,9 @@ jobs:
     build_macos:
         runs-on: macos-15
         steps:
-            - name: set up homebrew
+            - uses: actions/checkout@v4
               uses: Homebrew/actions/setup-homebrew@main
+            - name: update brew
+              run: brew update
             - name: install dependencies
               run: brew install meson
