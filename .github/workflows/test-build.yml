@@ -60,7 +60,7 @@ jobs:
             #         build/src/qman
 
     macos_arm:
-        runs-on: macos-13-xlarge
+        runs-on: macos-14-xlarge
         steps:
             - uses: actions/checkout@v4
             - uses: Homebrew/actions/setup-homebrew@main
@@ -85,7 +85,7 @@ jobs:
             #         build/src/qman
 
     macos_intel:
-        runs-on: macos-13
+        runs-on: macos-14
         steps:
             - uses: actions/checkout@v4
             - uses: Homebrew/actions/setup-homebrew@main
