@@ -25,12 +25,12 @@ jobs:
             - name: meson compile
               run: meson compile -C build/
 
-            # - name: create release draft
-            #   uses: softprops/action-gh-release@v1
-            #   with:
-            #       draft: true
-            #       files: |
-            #         build/src/qman
+            - name: create release draft
+              uses: softprops/action-gh-release@v1
+              with:
+                  draft: true
+                  files: |
+                    build/src/qman
 
     linux_x86_64:
         runs-on: ubuntu-22.04
@@ -52,6 +52,31 @@ jobs:
             - name: meson compile
               run: meson compile -C build/
 
+            - name: create release draft
+              uses: softprops/action-gh-release@v1
+              with:
+                  draft: true
+                  files: |
+                    build/src/qman
+
+    # macos_arm:
+    #     runs-on: macos-14-xlarge
+    #     steps:
+    #         - uses: actions/checkout@v4
+    #         - uses: Homebrew/actions/setup-homebrew@main
+    #
+    #         - name: update brew
+    #           run: brew update
+    #
+    #         - name: install dependencies
+    #           run: brew install meson cogapp cunit ncurses
+    #
+    #         - name: meson config build dir
+    #           run: meson setup build/ -Dpkg_config_path=/opt/homebrew/opt/ncurses/lib/pkgconfig
+    #
+    #         - name: meson compile
+    #           run: meson compile -C build/
+
             # - name: create release draft
             #   uses: softprops/action-gh-release@v1
             #   with:
@@ -59,50 +84,25 @@ jobs:
             #       files: |
             #         build/src/qman
 
-    macos_arm:
-        runs-on: macos-14-xlarge
-        steps:
-            - uses: actions/checkout@v4
-            - uses: Homebrew/actions/setup-homebrew@main
-
-            - name: update brew
-              run: brew update
-
-            - name: install dependencies
-              run: brew install meson cogapp cunit ncurses
-
-            - name: meson config build dir
-              run: meson setup build/ -Dpkg_config_path=/opt/homebrew/opt/ncurses/lib/pkgconfig
-
-            - name: meson compile
-              run: meson compile -C build/
-
-            # - name: create release draft
-            #   uses: softprops/action-gh-release@v1
-            #   with:
-            #       draft: true
-            #       files: |
-            #         build/src/qman
-
-    macos_intel:
-        runs-on: macos-14
-        steps:
-            - uses: actions/checkout@v4
-            - uses: Homebrew/actions/setup-homebrew@main
-
-            - name: update brew
-              run: brew update
-
-            - name: install dependencies
-              run: |
-                brew install --overwrite python@3.13
-                brew install meson cogapp cunit ncurses
-
-            - name: meson config build dir
-              run: meson setup build/ -Dpkg_config_path=/usr/local/opt/ncurses/lib/pkgconfig
-
-            - name: meson compile
-              run: meson compile -C build/
+    # macos_intel:
+    #     runs-on: macos-14
+    #     steps:
+    #         - uses: actions/checkout@v4
+    #         - uses: Homebrew/actions/setup-homebrew@main
+    #
+    #         - name: update brew
+    #           run: brew update
+    #
+    #         - name: install dependencies
+    #           run: |
+    #             brew install --overwrite python@3.13
+    #             brew install meson cogapp cunit ncurses
+    #
+    #         - name: meson config build dir
+    #           run: meson setup build/ -Dpkg_config_path=/usr/local/opt/ncurses/lib/pkgconfig
+    #
+    #         - name: meson compile
+    #           run: meson compile -C build/
 
             # - name: create release draft
             #   uses: softprops/action-gh-release@v1
